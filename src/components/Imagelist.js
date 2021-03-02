@@ -1,15 +1,11 @@
 import React from 'react';
+import ImageCard from './ImageCard'
 
 const ImageList = (props)=>{
-    const images = props.images.map(({id,alt_description,urls})=>{
+    const images = props.images.map((image)=>{
         return (
             // very important rule the id prop is for the root element only to be more perfurmancr as in div
-    <div key={id}>   
-        <h1>{alt_description}</h1>
-        <img  
-        src={urls.regular}
-        /> 
-    </div>
+            <ImageCard key={image.id} image={image}/>
         );
     });
         return <div>{images}</div>
