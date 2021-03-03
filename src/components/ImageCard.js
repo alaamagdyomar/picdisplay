@@ -3,13 +3,33 @@ import './ImageList.css';
 
 
 class ImageCard extends React.Component {
+    constructor(props){
+        super(props);
+        
+        this.imageRef = React.createRef();
+    }
+
+    componentDidMount(){
+                this.imageRef.current.addEventListener('load',this.setSpans);
+    }
+
+    setSpans=()=>{
+        console.log(this.imageRef.current.clientHeight);
+    }
+
     render () {
     const {alt_description , urls} = this.props.image;
         return (
-            <div className="iamge-list">
+            <>
+            <div>
                 <h1>{alt_description}</h1>
-                <img src={urls.regular}/>
+                <img 
+                ref={this.imageRef}
+                src={urls.regular}
+                />
             </div>
+
+            </>
         );
     }
 }
